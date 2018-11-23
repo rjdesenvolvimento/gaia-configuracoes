@@ -1,0 +1,62 @@
+#gaia
+server: 
+  port: 8661
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 8761
+  client:
+    client:
+    registerWithEureka: true
+    fetchRegistry: true
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+
+spring:
+ cloud:
+  gateway:
+    routes:
+    #clientes
+    - id: clientes-pf 
+      predicates:
+      - Path=/api/clientes/pf/**
+      filters:
+      - RewritePath=/api/clientes/pf/(?<Id>.*), /api/clientes/pf/$\{Id}
+      uri: "lb://API-PESSOAS"
+    - id: clientes-pj
+      predicates:
+      - Path=/api/clientes/pj/**
+      filters:
+      - RewritePath=/api/clientes/pj/(?<Id>.*), /api/clientes/pj/$\{Id}
+      uri: "lb://API-PESSOAS"
+      #funcionários
+    - id: funcionarios-pf
+      predicates:
+      - Path=/api/funcionarios/pf/**
+      filters:
+      - RewritePath=/api/funcionarios/pf/(?<Id>.*), /api/funcionarios/pf/$\{Id}
+      uri: "lb://API-PESSOAS"
+    - id: funcionarios-pj
+      predicates:
+      - Path=/api/funcionarios/pj/**
+      filters:
+      - RewritePath=/api/funcionarios/pj/(?<Id>.*), /api/funcionarios/pj/$\{Id}
+      uri: "lb://API-PESSOAS"
+      #usuários
+    - id: usuarios
+      predicates:
+      - Path=/api/usuarios/**
+      filters:
+      - RewritePath=/api/usuarios/(?<Id>.*), /api/usuarios/$\{Id}
+      uri: "lb://API-USUARIOS"
+      #produtos-vestuário
+    - id: produtos-vestuario
+      predicates:
+      - Path=/api/produtos/vestuario/**
+      filters:
+      - RewritePath=/api/produtos/vestuario/(?<Id>.*), /api/produtos/vestuario/$\{Id}
+      uri: "lb://API-PRODUTOS-VESTUARIO"
+
