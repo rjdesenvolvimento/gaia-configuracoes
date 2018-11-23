@@ -11,10 +11,8 @@ eureka:
       defaultZone: http://${eureka.instance.hostname}:${server.port}/eureka/
   server:
     wait-time-in-ms-when-sync-empty: 3000
-# Spring MVC
 
 spring:
   locale: pt_BR
   jackson:
     time-zone: America/Campo_Grande
-  profiles: producao
