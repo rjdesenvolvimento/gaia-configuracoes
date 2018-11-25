@@ -1,0 +1,40 @@
+server:
+  port: 9090
+
+eureka:
+  instance:
+    hostname: localhost
+    port: 8761
+  client:
+    registerWithEureka: true
+    fetchRegistry: false
+    serviceUrl:
+      defaultZone: http://${eureka.instance.hostname}:${eureka.instance.port}/eureka/
+  server:
+    wait-time-in-ms-when-sync-empty: 3000
+
+    spring:
+  profiles.actives: development
+  datasource: 
+    platform: postgres 
+    url: jdbc:postgresql://localhost:5432/harpocrates 
+    username: postgres 
+    password: YhjPVFam5pGDhM8Bdxh2frfss8ZGJa 
+    driver-class-name: org.postgresql.Driver
+    initialize: true
+  jpa: 
+    properties:
+      hibernate:
+        formatSql: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
+    show-sql: false 
+    hibernate: 
+      ddlAuto: create-drop 
+      naming:
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyJpaCompliantImpl
+  jackson:
+    time-zone: America/Campo_Grande
