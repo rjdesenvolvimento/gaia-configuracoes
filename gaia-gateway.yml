@@ -25,33 +25,33 @@ spring:
       - Path=/api/clientes/pf/**
       filters:
       - RewritePath=/api/clientes/pf/(?<Id>.*), /api/clientes/pf/$\{Id}
-      uri: "lb://API-PESSOAS"
+      uri: "lb://GAIA-PESSOAS"
     - id: clientes-pj
       predicates:
       - Path=/api/clientes/pj/**
       filters:
       - RewritePath=/api/clientes/pj/(?<Id>.*), /api/clientes/pj/$\{Id}
-      uri: "lb://API-PESSOAS"
+      uri: "lb://GAIA-PESSOAS"
       #funcionários
     - id: funcionarios-pf
       predicates:
       - Path=/api/funcionarios/pf/**
       filters:
       - RewritePath=/api/funcionarios/pf/(?<Id>.*), /api/funcionarios/pf/$\{Id}
-      uri: "lb://API-PESSOAS"
+      uri: "lb://GAIA-PESSOAS"
     - id: funcionarios-pj
       predicates:
       - Path=/api/funcionarios/pj/**
       filters:
       - RewritePath=/api/funcionarios/pj/(?<Id>.*), /api/funcionarios/pj/$\{Id}
-      uri: "lb://API-PESSOAS"
+      uri: "lb://GAIA-PESSOAS"
       #usuários
     - id: usuarios
       predicates:
       - Path=/api/usuarios/**
       filters:
       - RewritePath=/api/usuarios/(?<Id>.*), /api/usuarios/$\{Id}
-      uri: "lb://API-USUARIOS"
+      uri: "lb://GAIA-USUARIOS"
       #produtos-vestuário
     - id: produtos-vestuario
       predicates:
