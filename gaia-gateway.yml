@@ -19,7 +19,12 @@ spring:
  cloud:
   gateway:
     routes:
-    #clientes
+    # OAuth2
+    - id:
+      predicates:
+      - Path=/oauth/**
+      uri: "lb://GAIA-SERVIDOR-OAUTH"
+    # clientes
     - id: clientes-pf 
       predicates:
       - Path=/api/clientes/pf/**
@@ -32,7 +37,7 @@ spring:
       filters:
       - RewritePath=/api/clientes/pj/(?<Id>.*), /api/clientes/pj/$\{Id}
       uri: "lb://GAIA-PESSOAS"
-      #funcionários
+      # funcionários
     - id: funcionarios-pf
       predicates:
       - Path=/api/funcionarios/pf/**
@@ -45,14 +50,14 @@ spring:
       filters:
       - RewritePath=/api/funcionarios/pj/(?<Id>.*), /api/funcionarios/pj/$\{Id}
       uri: "lb://GAIA-PESSOAS"
-      #usuários
+      # usuários
     - id: usuarios
       predicates:
       - Path=/api/usuarios/**
       filters:
       - RewritePath=/api/usuarios/(?<Id>.*), /api/usuarios/$\{Id}
       uri: "lb://GAIA-USUARIOS"
-      #produtos-vestuário
+      # produtos-vestuário
     - id: produtos-vestuario
       predicates:
       - Path=/api/produtos/vestuario/**
