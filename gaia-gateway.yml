@@ -20,7 +20,7 @@ spring:
   gateway:
     routes:
     # OAuth2
-    - id:
+    - id: oauth2
       predicates:
       - Path=/oauth/**
       uri: "lb://GAIA-SERVIDOR-OAUTH"
